@@ -68,8 +68,7 @@ static void handle_time_tick(struct tm* tick_time, TimeUnits units_changed) {
 	else if  (wday_flag == 6) {text_layer_set_text(wday_layer, " sat");}
 	//それぞれに対応する曜日を任意の文字列で定義してwday_layerにテキストとして表示する
 	//（一文字目から打ち込んだらwedのwが飛んで表示されたので半角スペースで回避している）
-	//ここだけ代入するアドレス数を定義しなくても成立しているのは何でだろう？
-		
+	
 }
 //バッテリーの参照と画像の引当
 
@@ -78,29 +77,29 @@ void handle_battery(BatteryChargeState charge) { //バッテリ情報の構造�
         bitmap_layer_set_bitmap(batt_layer, gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BATT_13));}
 	else if (charge.is_plugged){ //（満充電の場合 - 電池最大アイコンを表示）
         bitmap_layer_set_bitmap(batt_layer, gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BATT_12));}
-	else if (charge.charge_percent > 91){ //（以下、充電していない場合 - 残量に適合するアイコンを表示）
+	else if (charge.charge_percent > 88){ //（以下、充電していない場合 - 残量に適合するアイコンを表示）
         bitmap_layer_set_bitmap(batt_layer, gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BATT_12));}
-	else if (charge.charge_percent > 83){
+	else if (charge.charge_percent > 81){
         bitmap_layer_set_bitmap(batt_layer, gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BATT_11));}
-	else if (charge.charge_percent > 75){
+	else if (charge.charge_percent > 74){
         bitmap_layer_set_bitmap(batt_layer, gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BATT_10));}
 	else if (charge.charge_percent > 67){
         bitmap_layer_set_bitmap(batt_layer, gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BATT_9));}
-	else if (charge.charge_percent > 58){
+	else if (charge.charge_percent > 60){
         bitmap_layer_set_bitmap(batt_layer, gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BATT_8));}
-	else if (charge.charge_percent > 50){
+	else if (charge.charge_percent > 53){
         bitmap_layer_set_bitmap(batt_layer, gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BATT_7));}
-	else if (charge.charge_percent > 42){
+	else if (charge.charge_percent > 46){
         bitmap_layer_set_bitmap(batt_layer, gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BATT_6));}
-	else if (charge.charge_percent > 33){
+	else if (charge.charge_percent > 39){
         bitmap_layer_set_bitmap(batt_layer, gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BATT_5));}
-	else if (charge.charge_percent > 25){
+	else if (charge.charge_percent > 32){
         bitmap_layer_set_bitmap(batt_layer, gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BATT_4));}
-	else if (charge.charge_percent > 17){
+	else if (charge.charge_percent > 25){
         bitmap_layer_set_bitmap(batt_layer, gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BATT_3));}
-	else if (charge.charge_percent > 8){
+	else if (charge.charge_percent > 18){
         bitmap_layer_set_bitmap(batt_layer, gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BATT_2));}
-	else if (charge.charge_percent > 4){
+	else if (charge.charge_percent > 11){
         bitmap_layer_set_bitmap(batt_layer, gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BATT_1));}
 	else if (charge.charge_percent > 0){
         bitmap_layer_set_bitmap(batt_layer, gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BATT_0));}
@@ -114,7 +113,7 @@ void handle_battery(BatteryChargeState charge) { //バッテリ情報の構造�
 
 static void handle_bluetooth(bool connected){//bool（２択）。ここではconnected でtrueとしている？
 	if		  (connected) {bitmap_layer_set_bitmap(bt_layer, gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BT_1));}
-	//画像レイヤに画像を配置（ターゲット, アップロード済みのファイルを画像に代入（該当ID））
+			  //画像レイヤに条件に対応する画像を配置（ターゲット, アップロード済みのファイルを画像に代入（該当ID））
 	else						{bitmap_layer_set_bitmap(bt_layer,gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BT_0));
 									vibes_long_pulse();
 								}

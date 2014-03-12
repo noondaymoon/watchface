@@ -1,0 +1,115 @@
+{
+    "versionLabel": "1.0",
+    "uuid": "56f14240-1bd3-40e5-b736-2a0a74bae920",
+    "appKeys": {},
+    "longName": "noondaymoon",
+    "versionCode": 1,
+    "capabilities": [
+        ""
+    ],
+    "shortName": "noondaymoon",
+    "companyName": "noondaymoon",
+    "watchapp": {
+        "watchface": true
+    },
+    "resources": {
+        "media": [
+            {
+                "type": "png",
+                "name": "IMAGE_BATT_13",
+                "file": "images/batt_13.png"
+            },
+            {
+                "type": "png",
+                "name": "IMAGE_BATT_12",
+                "file": "images/batt_12.png"
+            },
+            {
+                "type": "png",
+                "name": "IMAGE_BATT_11",
+                "file": "images/batt_11.png"
+            },
+            {
+                "type": "png",
+                "name": "IMAGE_BATT_10",
+                "file": "images/batt_10.png"
+            },
+            {
+                "type": "png",
+                "name": "IMAGE_BATT_9",
+                "file": "images/batt_9.png"
+            },
+            {
+                "type": "png",
+                "name": "IMAGE_BATT_8",
+                "file": "images/batt_8.png"
+            },
+            {
+                "type": "png",
+                "name": "IMAGE_BATT_7",
+                "file": "images/batt_7.png"
+            },
+            {
+                "type": "png",
+                "name": "IMAGE_BATT_6",
+                "file": "images/batt_6.png"
+            },
+            {
+                "type": "png",
+                "name": "IMAGE_BATT_5",
+                "file": "images/batt_5.png"
+            },
+            {
+                "type": "png",
+                "name": "IMAGE_BATT_4",
+                "file": "images/batt_4.png"
+            },
+            {
+                "type": "png",
+                "name": "IMAGE_BATT_3",
+                "file": "images/batt_3.png"
+            },
+            {
+                "type": "png",
+                "name": "IMAGE_BATT_2",
+                "file": "images/batt_2.png"
+            },
+            {
+                "type": "png",
+                "name": "IMAGE_BATT_1",
+                "file": "images/batt_1.png"
+            },
+            {
+                "type": "png",
+                "name": "IMAGE_BT_1",
+                "file": "images/bt_1.png"
+            },
+            {
+                "type": "png",
+                "name": "IMAGE_BT_0",
+                "file": "images/bt_0.png"
+            },
+            {
+                "type": "png",
+                "name": "IMAGE_BATT_0",
+                "file": "images/batt_0.png"
+            },
+            {
+                "menuIcon": true,
+                "type": "png",
+                "name": "IMAGE_MENU_ICON",
+                "file": "images/menu_icon_noondaymoon.png"
+            },
+            {
+                "type": "font",
+                "name": "font_droid_44",
+                "file": "fonts/DroidSans.ttf"
+            },
+            {
+                "type": "font",
+                "name": "font_droid_18",
+                "file": "fonts/DroidSans.ttf"
+            }
+        ]
+    }
+}

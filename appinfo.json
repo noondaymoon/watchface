@@ -15,6 +15,66 @@
     "resources": {
         "media": [
             {
+                "type": "png",
+                "name": "IMAGE_BATT_32",
+                "file": "images/batt_32.png"
+            },
+            {
+                "type": "png",
+                "name": "IMAGE_BATT_31",
+                "file": "images/batt_31.png"
+            },
+            {
+                "type": "png",
+                "name": "IMAGE_BATT_30",
+                "file": "images/batt_30.png"
+            },
+            {
+                "type": "png",
+                "name": "IMAGE_BATT_29",
+                "file": "images/batt_29.png"
+            },
+            {
+                "type": "png",
+                "name": "IMAGE_BATT_28",
+                "file": "images/batt_28.png"
+            },
+            {
+                "type": "png",
+                "name": "IMAGE_BATT_27",
+                "file": "images/batt_27.png"
+            },
+            {
+                "type": "png",
+                "name": "IMAGE_BATT_26",
+                "file": "images/batt_26.png"
+            },
+            {
+                "type": "png",
+                "name": "IMAGE_BATT_25",
+                "file": "images/batt_25.png"
+            },
+            {
+                "type": "png",
+                "name": "IMAGE_BATT_24",
+                "file": "images/batt_24.png"
+            },
+            {
+                "type": "png",
+                "name": "IMAGE_BATT_23",
+                "file": "images/batt_23.png"
+            },
+            {
+                "type": "png",
+                "name": "IMAGE_BATT_22",
+                "file": "images/batt_22.png"
+            },
+            {
+                "type": "png",
+                "name": "IMAGE_BATT_21",
+                "file": "images/batt_21.png"
+            },
+            {
                 "type": "font",
                 "name": "font_droid_18",
                 "file": "fonts/DroidSans.ttf"

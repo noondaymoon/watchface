@@ -2,20 +2,15 @@
 #include "pebble.h"
 
 //１:表示内容の定義
-//メインウインドウ
-Window *window;
-//テキストレイヤ（時間:time_layer）
-TextLayer *time_layer;
-//テキストレイヤ（日付:date_layer）
-TextLayer *date_layer;
-//テキストレイヤ（曜日:wday_layer）
-TextLayer *wday_layer;
-//ラインレイヤ（line_layer）
-Layer *line_layer;
-//画像レイヤ（バッテリー:batt_layer）
-BitmapLayer *batt_layer;
-//画像レイヤ（bluetooth:bt_layer）
-BitmapLayer *bt_layer;
+
+Window *window; //メインウインドウ
+TextLayer *time_layer; //テキストレイヤ（時間:time_layer）
+TextLayer *date_layer; //テキストレイヤ（日付:date_layer）
+TextLayer *wday_layer;//テキストレイヤ（曜日:wday_layer）
+Layer *line_layer; //ラインレイヤ（line_layer）
+
+BitmapLayer *batt_layer; //画像レイヤ（バッテリー:batt_layer）
+BitmapLayer *bt_layer; //画像レイヤ（bluetooth:bt_layer）
 
 //２:アプリ設定
 //ラインの表示（流用。ちゃんとわかってない）
@@ -71,7 +66,72 @@ static void handle_time_tick(struct tm* tick_time, TimeUnits units_changed) {
 	
 }
 //バッテリーの参照と画像の引当
+//テスト
+void handle_battery(BatteryChargeState charge) { //バッテリ情報の構造体のうち、充電状況（charge）を参照する
+	if (charge.is_charging){ //（充電中の場合 - 充電中のアイコンを表示）
+			if (charge.charge_percent > 88){ //（以下、充電していない場合 - 残量に適合するアイコンを表示）
+		        bitmap_layer_set_bitmap(batt_layer, gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BATT_32));}
+			else if (charge.charge_percent > 81){
+		        bitmap_layer_set_bitmap(batt_layer, gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BATT_31));}
+			else if (charge.charge_percent > 74){
+		        bitmap_layer_set_bitmap(batt_layer, gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BATT_30));}
+			else if (charge.charge_percent > 67){
+		        bitmap_layer_set_bitmap(batt_layer, gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BATT_29));}
+			else if (charge.charge_percent > 60){
+		        bitmap_layer_set_bitmap(batt_layer, gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BATT_28));}
+			else if (charge.charge_percent > 53){
+		        bitmap_layer_set_bitmap(batt_layer, gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BATT_27));}
+			else if (charge.charge_percent > 46){
+		        bitmap_layer_set_bitmap(batt_layer, gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BATT_26));}
+			else if (charge.charge_percent > 39){
+		        bitmap_layer_set_bitmap(batt_layer, gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BATT_25));}
+			else if (charge.charge_percent > 32){
+		        bitmap_layer_set_bitmap(batt_layer, gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BATT_24));}
+			else if (charge.charge_percent > 25){
+		        bitmap_layer_set_bitmap(batt_layer, gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BATT_23));}
+			else if (charge.charge_percent > 18){
+		        bitmap_layer_set_bitmap(batt_layer, gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BATT_22));}
+			else if (charge.charge_percent > 11){
+		        bitmap_layer_set_bitmap(batt_layer, gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BATT_21));}
+			else {
+	        bitmap_layer_set_bitmap(batt_layer, gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BATT_21));}
+        }
+	else if (charge.is_plugged){ //（満充電の場合 - 電池最大アイコンを表示）
+        bitmap_layer_set_bitmap(batt_layer, gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BATT_12));}
+	else if (charge.charge_percent > 88){ //（以下、充電していない場合 - 残量に適合するアイコンを表示）
+        bitmap_layer_set_bitmap(batt_layer, gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BATT_12));}
+	else if (charge.charge_percent > 81){
+        bitmap_layer_set_bitmap(batt_layer, gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BATT_11));}
+	else if (charge.charge_percent > 74){
+        bitmap_layer_set_bitmap(batt_layer, gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BATT_10));}
+	else if (charge.charge_percent > 67){
+        bitmap_layer_set_bitmap(batt_layer, gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BATT_9));}
+	else if (charge.charge_percent > 60){
+        bitmap_layer_set_bitmap(batt_layer, gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BATT_8));}
+	else if (charge.charge_percent > 53){
+        bitmap_layer_set_bitmap(batt_layer, gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BATT_7));}
+	else if (charge.charge_percent > 46){
+        bitmap_layer_set_bitmap(batt_layer, gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BATT_6));}
+	else if (charge.charge_percent > 39){
+        bitmap_layer_set_bitmap(batt_layer, gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BATT_5));}
+	else if (charge.charge_percent > 32){
+        bitmap_layer_set_bitmap(batt_layer, gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BATT_4));}
+	else if (charge.charge_percent > 25){
+        bitmap_layer_set_bitmap(batt_layer, gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BATT_3));}
+	else if (charge.charge_percent > 18){
+        bitmap_layer_set_bitmap(batt_layer, gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BATT_2));}
+	else if (charge.charge_percent > 11){
+        bitmap_layer_set_bitmap(batt_layer, gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BATT_1));}
+	else if (charge.charge_percent > 0){
+        bitmap_layer_set_bitmap(batt_layer, gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BATT_0));}
+    else{
+	        // 無いとは思うけどコレ以外の状況が発生した場合に対応するため以下を記載（電池アイコンの表示なし）
+		layer_set_hidden(bitmap_layer_get_layer(batt_layer), true);}
+	//クラッシュする場合あった場合、各分岐にlayer_set_hidden(bitmap_layer_get_layer(batt_layer), false);を加える
 
+}
+
+/*
 void handle_battery(BatteryChargeState charge) { //バッテリ情報の構造体のうち、充電状況（charge）を参照する
 	if (charge.is_charging){ //（充電中の場合 - 充電中のアイコンを表示）
         bitmap_layer_set_bitmap(batt_layer, gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BATT_13));}
@@ -108,6 +168,9 @@ void handle_battery(BatteryChargeState charge) { //バッテリ情報の構造�
 		layer_set_hidden(bitmap_layer_get_layer(batt_layer), true);}
 	//クラッシュする場合あった場合、各分岐にlayer_set_hidden(bitmap_layer_get_layer(batt_layer), false);を加える
 }
+*/
+
+
 
 //bluetoothの接続状況参照と画像の引当
 
@@ -176,16 +239,16 @@ static void do_init(void) {
 
 	batt_layer = bitmap_layer_create(GRect(122, 151, 16, 10)); //画像レイヤの詳細を設定する
 	layer_add_child(window_layer, bitmap_layer_get_layer(batt_layer)); //親レイヤに載せる 
-	handle_battery(battery_state_service_peek()); //最新のバッテリ情報を参照し、指定した先に代入する（？
 	
+	handle_battery(battery_state_service_peek()); //最新のバッテリ情報を参照し、指定した先に代入する（？
 	battery_state_service_subscribe(&handle_battery); //代入されたバッテリ情報を監視する（？
 	
 	//bluetooth（bt_layer）
 
 	bt_layer = bitmap_layer_create(GRect(106, 151, 11, 10));
 	layer_add_child(window_layer, bitmap_layer_get_layer(bt_layer));
-	handle_bluetooth(bluetooth_connection_service_peek()); //最新のbluetoothの情報を参照し、指定した先に代入する（？
 
+	handle_bluetooth(bluetooth_connection_service_peek()); //最新のbluetoothの情報を参照し、指定した先に代入する（？
 	bluetooth_connection_service_subscribe(&handle_bluetooth); //代入されたbluetoothの情報を監視する（？
 
 }

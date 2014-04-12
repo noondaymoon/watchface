@@ -14,9 +14,10 @@ BitmapLayer *bt_layer; //画像レイヤ（bluetooth:bt_layer）
 
 //２:アプリ設定
 //ラインの表示（流用。ちゃんとわかってない）
-void draw_line(Layer *layer, GContext* ctx) {
-	graphics_context_set_fill_color(ctx, GColorWhite);
-	graphics_fill_rect(ctx, layer_get_bounds(layer), 0, GCornerNone);}
+void draw_line(Layer *layer, GContext* ctx) { //"draw_line"という関数を作る宣言。ターゲットは任意のレイヤ、描画方法は任意
+	//"context"は文脈という意味。それまでのプログラムの流れに応じた値を返す意味
+	graphics_context_set_fill_color(ctx, GColorWhite); //任意のレイヤを白色で埋める
+	graphics_fill_rect(ctx, layer_get_bounds(layer), 0, GCornerNone);} 
 
 //時間等を呼び出してテキストレイヤへ代入する
 static void handle_time_tick(struct tm* tick_time, TimeUnits units_changed) {
@@ -130,47 +131,6 @@ void handle_battery(BatteryChargeState charge) { //バッテリ情報の構造�
 	//クラッシュする場合あった場合、各分岐にlayer_set_hidden(bitmap_layer_get_layer(batt_layer), false);を加える
 
 }
-
-/*
-void handle_battery(BatteryChargeState charge) { //バッテリ情報の構造体のうち、充電状況（charge）を参照する
-	if (charge.is_charging){ //（充電中の場合 - 充電中のアイコンを表示）
-        bitmap_layer_set_bitmap(batt_layer, gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BATT_13));}
-	else if (charge.is_plugged){ //（満充電の場合 - 電池最大アイコンを表示）
-        bitmap_layer_set_bitmap(batt_layer, gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BATT_12));}
-	else if (charge.charge_percent > 88){ //（以下、充電していない場合 - 残量に適合するアイコンを表示）
-        bitmap_layer_set_bitmap(batt_layer, gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BATT_12));}
-	else if (charge.charge_percent > 81){
-        bitmap_layer_set_bitmap(batt_layer, gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BATT_11));}
-	else if (charge.charge_percent > 74){
-        bitmap_layer_set_bitmap(batt_layer, gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BATT_10));}
-	else if (charge.charge_percent > 67){
-        bitmap_layer_set_bitmap(batt_layer, gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BATT_9));}
-	else if (charge.charge_percent > 60){
-        bitmap_layer_set_bitmap(batt_layer, gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BATT_8));}
-	else if (charge.charge_percent > 53){
-        bitmap_layer_set_bitmap(batt_layer, gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BATT_7));}
-	else if (charge.charge_percent > 46){
-        bitmap_layer_set_bitmap(batt_layer, gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BATT_6));}
-	else if (charge.charge_percent > 39){
-        bitmap_layer_set_bitmap(batt_layer, gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BATT_5));}
-	else if (charge.charge_percent > 32){
-        bitmap_layer_set_bitmap(batt_layer, gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BATT_4));}
-	else if (charge.charge_percent > 25){
-        bitmap_layer_set_bitmap(batt_layer, gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BATT_3));}
-	else if (charge.charge_percent > 18){
-        bitmap_layer_set_bitmap(batt_layer, gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BATT_2));}
-	else if (charge.charge_percent > 11){
-        bitmap_layer_set_bitmap(batt_layer, gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BATT_1));}
-	else if (charge.charge_percent > 0){
-        bitmap_layer_set_bitmap(batt_layer, gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BATT_0));}
-    else{
-	        // 無いとは思うけどコレ以外の状況が発生した場合に対応するため以下を記載（電池アイコンの表示なし）
-		layer_set_hidden(bitmap_layer_get_layer(batt_layer), true);}
-	//クラッシュする場合あった場合、各分岐にlayer_set_hidden(bitmap_layer_get_layer(batt_layer), false);を加える
-}
-*/
-
-
 
 //bluetoothの接続状況参照と画像の引当
 

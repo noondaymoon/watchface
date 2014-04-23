@@ -15,7 +15,7 @@ BitmapLayer *bt_layer; //画像レイヤ（bluetooth:bt_layer）
 //２:アプリ設定
 //ラインの表示（流用。ちゃんとわかってない）
 void draw_line(Layer *layer, GContext* ctx) { //"draw_line"という関数を作る宣言。ターゲットは任意のレイヤ、描画方法は任意
-	//"context"は文脈という意味。それまでのプログラムの流れに応じた値を返す意味
+	//"context"は文脈という意味。それまでのプログラムの流れに応じた値を返す意味かな？
 	graphics_context_set_fill_color(ctx, GColorWhite); //任意のレイヤを白色で埋める
 	graphics_fill_rect(ctx, layer_get_bounds(layer), 0, GCornerNone);} 
 
@@ -67,7 +67,8 @@ static void handle_time_tick(struct tm* tick_time, TimeUnits units_changed) {
 	
 }
 //バッテリーの参照と画像の引当
-//テスト
+//残量で電池の表示幅変化させる方法見かけたんだケドどうにもしっくりこないからこのままにしてる。
+
 void handle_battery(BatteryChargeState charge) { //バッテリ情報の構造体のうち、充電状況（charge）を参照する
 	if (charge.is_charging){ //（充電中の場合 - 充電中のアイコンを表示）
 			if (charge.charge_percent > 88){ //（以下、充電していない場合 - 残量に適合するアイコンを表示）

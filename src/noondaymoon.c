@@ -72,7 +72,7 @@ static void handle_time_tick(struct tm* tick_time, TimeUnits units_changed) {
 void handle_battery(BatteryChargeState charge) { //バッテリ情報の構造体のうち、充電状況（charge）を参照する
 
 	// 充電中（時計アイコンを給電中の表示に切り替え、電池残量に応じた電池アイコンを表示）
-	if (charge.is_charging){ 
+	if (charge.is_charging){
 		bitmap_layer_set_bitmap(watchicon_layer, gbitmap_create_with_resource(RESOURCE_ID_IMAGE_thunder));
 			if (charge.charge_percent >90){
 		        bitmap_layer_set_bitmap(batt_layer, gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BATT_09));}
@@ -100,7 +100,8 @@ void handle_battery(BatteryChargeState charge) { //バッテリ情報の構造�
 
 	// 満充電時は給電中の表示から時計アイコンへ戻す
 	else if (charge.is_plugged){
-        bitmap_layer_set_bitmap(batt_layer, gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BATT_09));}
+		bitmap_layer_set_bitmap(batt_layer, gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BATT_09));
+		bitmap_layer_set_bitmap(watchicon_layer, gbitmap_create_with_resource(RESOURCE_ID_IMAGE_watchicon));}
 
 	// 給電していない場合は時計アイコンを表示し、電池残量に応じた電池アイコンを表示する
 	else if (! charge.is_charging){
@@ -157,7 +158,7 @@ static void do_init(void) {
 	layer_add_child(window_layer, line_layer); //親レイヤに子レイヤとして載せる
 	
 	//時計アイコン（watchicon_layer）
-	watchicon_layer = bitmap_layer_create(GRect(114, 151, 6, 10));
+	watchicon_layer = bitmap_layer_create(GRect(132, 151, 6, 10));
 	layer_add_child(window_layer, bitmap_layer_get_layer(watchicon_layer));
 	bitmap_layer_set_background_color(watchicon_layer, GColorClear);
 	
@@ -195,7 +196,7 @@ static void do_init(void) {
 	tick_timer_service_subscribe(SECOND_UNIT, &handle_time_tick); //代入された時間の情報を監視する（？
 	
 	//バッテリー（batt_layer）
-	batt_layer = bitmap_layer_create(GRect(124, 151, 14, 10)); //画像レイヤの詳細を設定する
+	batt_layer = bitmap_layer_create(GRect(114, 151, 14, 10)); //画像レイヤの詳細を設定する
 	layer_add_child(window_layer, bitmap_layer_get_layer(batt_layer)); //親レイヤに載せる 
 	
 	handle_battery(battery_state_service_peek()); //最新のバッテリ情報を参照し、指定した先に代入する（？

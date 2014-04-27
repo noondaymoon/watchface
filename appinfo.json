@@ -113,7 +113,7 @@
     "versionCode": 1,
     "longName": "noondaymoon",
     "shortName": "noondaymoon",
-    "versionLabel": "1.0",
+    "versionLabel": "1.11",
     "watchapp": {
         "watchface": true
     }

@@ -47,7 +47,7 @@ static void handle_time_tick(struct tm* tick_time, TimeUnits units_changed) {
 	//上記の展開により代入された時刻をtime_layerにテキストとして表示する
 	
 	//日付
-	strftime(date_text, sizeof(date_text), "%d/%m/%y", tick_time); 
+	strftime(date_text, sizeof(date_text), "%y/%m/%d", tick_time); 
 	//日付を取得して代入する（ターゲット, アドレスのサイズ, 書式, 代入するべき取得したデータ）
 	text_layer_set_text(date_layer, date_text);
 	//上記の展開により代入された日付をdate_layerにテキストとして表示する
@@ -131,6 +131,68 @@ void handle_battery(BatteryChargeState charge) { //バッテリ情報の構造�
 			layer_set_hidden(bitmap_layer_get_layer(batt_layer), true);}
 	}
 }
+
+/*
+//140619_充電表示を戻す（作業中）
+void handle_battery(BatteryChargeState charge) { //バッテリ情報の構造体のうち、充電状況（charge）を参照する
+
+	// 充電中（時計アイコンを給電中の表示に切り替え、電池残量に応じた電池アイコンを表示）
+	if (charge.is_charging){
+			if (charge.charge_percent >80){
+		        bitmap_layer_set_bitmap(batt_layer, gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BATT_18));}
+			else if (charge.charge_percent > 70){
+		        bitmap_layer_set_bitmap(batt_layer, gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BATT_17));}
+			else if (charge.charge_percent > 60){
+		        bitmap_layer_set_bitmap(batt_layer, gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BATT_16));}
+			else if (charge.charge_percent > 50){
+		        bitmap_layer_set_bitmap(batt_layer, gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BATT_15));}
+			else if (charge.charge_percent > 40){
+		        bitmap_layer_set_bitmap(batt_layer, gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BATT_14));}
+			else if (charge.charge_percent > 30){
+		        bitmap_layer_set_bitmap(batt_layer, gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BATT_13));}
+			else if (charge.charge_percent > 20){
+		        bitmap_layer_set_bitmap(batt_layer, gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BATT_12));}
+			else if (charge.charge_percent > 10){
+		        bitmap_layer_set_bitmap(batt_layer, gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BATT_11));}
+			else if (charge.charge_percent > 0){
+		        bitmap_layer_set_bitmap(batt_layer, gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BATT_10));}
+			else {
+	        bitmap_layer_set_bitmap(batt_layer, gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BATT_10));}
+        }
+
+	// 満充電時は満充電の電池アイコンを表示
+	else if (charge.is_plugged){
+		bitmap_layer_set_bitmap(batt_layer, gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BATT_09));}
+
+	// 給電していない場合は時計アイコンを表示し、電池残量に応じた電池アイコンを表示する
+	else if (! charge.is_charging){
+			bitmap_layer_set_bitmap(watchicon_layer, gbitmap_create_with_resource(RESOURCE_ID_IMAGE_watchicon));
+		if (charge.charge_percent > 80){
+    	    bitmap_layer_set_bitmap(batt_layer, gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BATT_08));}
+		else if (charge.charge_percent > 70){
+        	bitmap_layer_set_bitmap(batt_layer, gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BATT_07));}
+		else if (charge.charge_percent > 60){
+        	bitmap_layer_set_bitmap(batt_layer, gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BATT_06));}
+		else if (charge.charge_percent > 50){
+        	bitmap_layer_set_bitmap(batt_layer, gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BATT_05));}
+		else if (charge.charge_percent > 40){
+        	bitmap_layer_set_bitmap(batt_layer, gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BATT_04));}
+		else if (charge.charge_percent > 30){
+        	bitmap_layer_set_bitmap(batt_layer, gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BATT_03));}
+		else if (charge.charge_percent > 20){
+        	bitmap_layer_set_bitmap(batt_layer, gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BATT_02));}
+		else if (charge.charge_percent > 10){
+        	bitmap_layer_set_bitmap(batt_layer, gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BATT_01));}
+		else if (charge.charge_percent > 0){
+        	bitmap_layer_set_bitmap(batt_layer, gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BATT_00));}
+    	else{
+	        // 無いとは思うけどコレ以外の状況が発生した場合に対応するため以下を記載（電池アイコンの表示なし）
+			layer_set_hidden(bitmap_layer_get_layer(batt_layer), true);}
+	}
+}
+
+*/
+
 //bluetoothの接続状況参照と画像の引当
 
 static void handle_bluetooth(bool connected){//bool（２択）。ここではconnected でtrueとしている？
@@ -157,7 +219,7 @@ static void do_init(void) {
 	layer_set_update_proc(line_layer, draw_line); //自動的にレイヤを再描画する（ターゲット, 機能）
 	layer_add_child(window_layer, line_layer); //親レイヤに子レイヤとして載せる
 	
-	//時計アイコン（watchicon_layer）
+	//時計アイコン（watchicon_layer）※修正終わったら消す
 	watchicon_layer = bitmap_layer_create(GRect(132, 151, 6, 10));
 	layer_add_child(window_layer, bitmap_layer_get_layer(watchicon_layer));
 	bitmap_layer_set_background_color(watchicon_layer, GColorClear);
@@ -198,7 +260,7 @@ static void do_init(void) {
 	//バッテリー（batt_layer）
 	batt_layer = bitmap_layer_create(GRect(114, 151, 14, 10)); //画像レイヤの詳細を設定する
 	layer_add_child(window_layer, bitmap_layer_get_layer(batt_layer)); //親レイヤに載せる 
-	
+		
 	handle_battery(battery_state_service_peek()); //最新のバッテリ情報を参照し、指定した先に代入する（？
 	battery_state_service_subscribe(&handle_battery); //代入されたバッテリ情報を監視する（？
 	
@@ -208,14 +270,14 @@ static void do_init(void) {
 
 	handle_bluetooth(bluetooth_connection_service_peek()); //最新のbluetoothの情報を参照し、指定した先に代入する（？
 	bluetooth_connection_service_subscribe(&handle_bluetooth); //代入されたbluetoothの情報を監視する（？
-
+	
 }
 //４:メモリの開放（ハンドラの返却？）
 static void do_deinit(void) {
 
 	//画像描画に使ったメモリの開放
 	layer_destroy(line_layer); // 画像レイヤの開放（line_layer）
-	bitmap_layer_destroy(watchicon_layer); //画像レイヤの開放(watchicon_layer)
+	bitmap_layer_destroy(watchicon_layer); //画像レイヤの開放(watchicon_layer)※修正終わったら消す
 	
 	//bluetoothに関する表示に使ったメモリの開放
 	bluetooth_connection_service_unsubscribe(); //bluetoothの情報の監視を終了

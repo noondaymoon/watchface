@@ -14,6 +14,22 @@
                 "type": "png"
             },
             {
+                "file": "images/blank.png",
+                "name": "IMAGE_BLANK",
+                "type": "png"
+            },
+            {
+                "file": "images/full.png",
+                "name": "IMAGE_FULL",
+                "type": "png"
+            },
+            {
+                "file": "images/menu_icon_noondaymoon.png",
+                "menuIcon": true,
+                "name": "IMAGE_MENU_ICON",
+                "type": "png"
+            },
+            {
                 "file": "images/batt_12.png",
                 "name": "IMAGE_BATT_12",
                 "type": "png"
@@ -84,12 +100,6 @@
                 "type": "png"
             },
             {
-                "file": "images/menu_icon_noondaymoon.png",
-                "menuIcon": true,
-                "name": "IMAGE_MENU_ICON",
-                "type": "png"
-            },
-            {
                 "file": "images/bt_1.png",
                 "name": "IMAGE_BT_1",
                 "type": "png"
@@ -100,15 +110,18 @@
                 "type": "png"
             },
             {
-                "characterRegex": "[0-9,adefhimnorstuw,/, ]",
+                "characterRegex": "[0-9,:]",
+                "compatibility": "2.7",
                 "file": "fonts/DroidSans.ttf",
-                "name": "font_droid_18",
+                "name": "font_droid_44",
+                "trackingAdjust": 1,
                 "type": "font"
             },
             {
-                "characterRegex": "[0-9,:]",
+                "characterRegex": "[0-9,adefhimnorstuw,/, ]",
+                "compatibility": "2.7",
                 "file": "fonts/DroidSans.ttf",
-                "name": "font_droid_44",
+                "name": "font_droid_18",
                 "type": "font"
             }
         ]
@@ -116,7 +129,7 @@
     "shortName": "noondaymoon",
     "uuid": "56f14240-1bd3-40e5-b736-2a0a74bae921",
     "versionCode": 1,
-    "versionLabel": "1.11",
+    "versionLabel": "2.0",
     "watchapp": {
         "watchface": true
     }

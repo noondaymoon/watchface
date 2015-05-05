@@ -70,6 +70,32 @@ void handle_battery(BatteryChargeState charge) {
 		bt_layer = bitmap_layer_create(GRect(101, 151, 11, 10));
 		batt_layer = bitmap_layer_create(GRect(114, 151, 14, 10));
 		
+		//pebble time用に追記（"#ifdef PBL_COLOR" - "#endif" で分岐する）
+		#ifdef PBL_COLOR
+		if (charge.charge_percent >90){
+		        bitmap_layer_set_bitmap(batt_layer, gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BATT_09));}
+			else if (charge.charge_percent > 80){
+		        bitmap_layer_set_bitmap(batt_layer, gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BATT_08));}
+			else if (charge.charge_percent > 70){
+		        bitmap_layer_set_bitmap(batt_layer, gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BATT_07));}
+			else if (charge.charge_percent > 60){
+		        bitmap_layer_set_bitmap(batt_layer, gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BATT_06));}
+			else if (charge.charge_percent > 50){
+		        bitmap_layer_set_bitmap(batt_layer, gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BATT_05));}
+			else if (charge.charge_percent > 40){
+		        bitmap_layer_set_bitmap(batt_layer, gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BATT_04));}
+			else if (charge.charge_percent > 30){
+		        bitmap_layer_set_bitmap(batt_layer, gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BATT_03));}
+			else if (charge.charge_percent > 20){
+		        bitmap_layer_set_bitmap(batt_layer, gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BATT_12));}
+			else if (charge.charge_percent > 10){
+		        bitmap_layer_set_bitmap(batt_layer, gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BATT_11));}
+			else if (charge.charge_percent > 0){
+		        bitmap_layer_set_bitmap(batt_layer, gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BATT_10));}
+			else {
+	        bitmap_layer_set_bitmap(batt_layer, gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BATT_10));}
+		
+		#endif //pebble classic
 		if (charge.charge_percent >90){
 		        bitmap_layer_set_bitmap(batt_layer, gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BATT_09));}
 			else if (charge.charge_percent > 80){

@@ -126,7 +126,12 @@
             }
         ]
     },
+    "sdkVersion": "3",
     "shortName": "noondaymoon",
+    "targetPlatforms": [
+        "aplite",
+        "basalt"
+    ],
     "uuid": "56f14240-1bd3-40e5-b736-2a0a74bae921",
     "versionCode": 1,
     "versionLabel": "2.0",

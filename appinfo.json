@@ -9,6 +9,41 @@
     "resources": {
         "media": [
             {
+                "file": "images/batt_29.png",
+                "name": "IMAGE_BATT_29",
+                "type": "png"
+            },
+            {
+                "file": "images/batt_28.png",
+                "name": "IMAGE_BATT_28",
+                "type": "png"
+            },
+            {
+                "file": "images/batt_27.png",
+                "name": "IMAGE_BATT_27",
+                "type": "png"
+            },
+            {
+                "file": "images/batt_26.png",
+                "name": "IMAGE_BATT_26",
+                "type": "png"
+            },
+            {
+                "file": "images/batt_25.png",
+                "name": "IMAGE_BATT_25",
+                "type": "png"
+            },
+            {
+                "file": "images/batt_24.png",
+                "name": "IMAGE_BATT_24",
+                "type": "png"
+            },
+            {
+                "file": "images/batt_23.png",
+                "name": "IMAGE_BATT_23",
+                "type": "png"
+            },
+            {
                 "file": "images/thunder.png",
                 "name": "IMAGE_thunder",
                 "type": "png"

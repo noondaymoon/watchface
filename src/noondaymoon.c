@@ -158,20 +158,47 @@ void handle_battery(BatteryChargeState charge) {
 		bt_layer = bitmap_layer_create(GRect(110, 151, 11, 10));
 		batt_layer = bitmap_layer_create(GRect(123, 151, 14, 10));
 		
+		#ifdef PBL_COLOR
 		if (charge.charge_percent > 90){
-    	    bitmap_layer_set_bitmap(batt_layer, gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BATT_09));}
+    	    bitmap_layer_set_bitmap(batt_layer, gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BATT_29));}
 		else if (charge.charge_percent > 80){
-			bitmap_layer_set_bitmap(batt_layer, gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BATT_08));}
+			bitmap_layer_set_bitmap(batt_layer, gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BATT_28));}
 		else if (charge.charge_percent > 70){
-        	bitmap_layer_set_bitmap(batt_layer, gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BATT_07));}
+        	bitmap_layer_set_bitmap(batt_layer, gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BATT_27));}
 		else if (charge.charge_percent > 60){
-        	bitmap_layer_set_bitmap(batt_layer, gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BATT_06));}
+        	bitmap_layer_set_bitmap(batt_layer, gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BATT_26));}
 		else if (charge.charge_percent > 50){
-        	bitmap_layer_set_bitmap(batt_layer, gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BATT_05));}
+        	bitmap_layer_set_bitmap(batt_layer, gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BATT_25));}
 		else if (charge.charge_percent > 40){
-        	bitmap_layer_set_bitmap(batt_layer, gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BATT_04));}
+        	bitmap_layer_set_bitmap(batt_layer, gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BATT_24));}
 		else if (charge.charge_percent > 30){
-        	bitmap_layer_set_bitmap(batt_layer, gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BATT_03));}
+        	bitmap_layer_set_bitmap(batt_layer, gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BATT_23));}
+		else if (charge.charge_percent > 20){
+        	bitmap_layer_set_bitmap(batt_layer, gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BATT_02));}
+		else if (charge.charge_percent > 10){
+        	bitmap_layer_set_bitmap(batt_layer, gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BATT_01));}
+		else if (charge.charge_percent > 0){
+        	bitmap_layer_set_bitmap(batt_layer, gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BATT_00));}
+    	else{
+	        // 無いとは思うけどコレ以外の状況が発生した場合に対応するため以下を記載（電池アイコンの表示なし）
+			layer_set_hidden(bitmap_layer_get_layer(batt_layer), true);
+		}
+		
+		#endif
+		if (charge.charge_percent > 90){
+    	    bitmap_layer_set_bitmap(batt_layer, gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BATT_29));}
+		else if (charge.charge_percent > 80){
+			bitmap_layer_set_bitmap(batt_layer, gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BATT_28));}
+		else if (charge.charge_percent > 70){
+        	bitmap_layer_set_bitmap(batt_layer, gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BATT_27));}
+		else if (charge.charge_percent > 60){
+        	bitmap_layer_set_bitmap(batt_layer, gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BATT_26));}
+		else if (charge.charge_percent > 50){
+        	bitmap_layer_set_bitmap(batt_layer, gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BATT_25));}
+		else if (charge.charge_percent > 40){
+        	bitmap_layer_set_bitmap(batt_layer, gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BATT_24));}
+		else if (charge.charge_percent > 30){
+        	bitmap_layer_set_bitmap(batt_layer, gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BATT_23));}
 		else if (charge.charge_percent > 20){
         	bitmap_layer_set_bitmap(batt_layer, gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BATT_02));}
 		else if (charge.charge_percent > 10){
